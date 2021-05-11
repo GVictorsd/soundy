@@ -12,7 +12,7 @@ With that said, let's now consider only low pass filter for now.
 A simple low pass filter can be constructed as shown. It is built using a resistor and capacitor pair. Such setup is often refered as first order low pass filter.
 
 <br>
-<img src='simplelowpass.jpeg' width=350px>
+<img src='assets/simplelowpass.jpeg' width=350px>
 <br>
 
 Consider the situation where a square wave is fed to our low pass filter. Math folks in the room will know that a square wave is a mix of sine waves with many frequencies. Infact, a square wave can be approximated in Fourier Series as summation of infinite sine waves with several frequencies. So, when such signal is passed through the low pass filter, output will only contain few sine waves with low frequency. Thus, the output should look roughly like a sine wave.
@@ -20,7 +20,7 @@ Consider the situation where a square wave is fed to our low pass filter. Math f
 It should be considered that from a low pass filter, we expect all the frequencies above certain frequency (called cutoff frequency) to be removed from the input. Such filters are ideal and have a perfect vertical line at the cutoff frequency in the frequency response graph. But such behaviour is not observed in practical filters. They have a more gradual rolloff at the cutoff frequency. While designing a filter we want the frequency response to be as close to ideal as possible or we need the rolloff to be as steep as possible. And yes, as you may expect, usually in electronics, simple circuits are far from ideal. It's also true for our simple low pass filter. It has a very gradual rollof at cutoff frequency. So, usually two of our simple low pass filters are cascaded to form a two stage filter which is helpful to improve the rollof. Such filter is called a second order filter.
 
 <br>
-<img src='freqrollof.jpeg' width=350px>
+<img src='assets/freqrollof.jpeg' width=350px>
 <br>
 
 ### Active Low Pass Filter
@@ -35,7 +35,7 @@ Opamps can be used in a range of applications. One of them is a Buffer. Buffer i
 Great! With that out of the way, consider the circuit connected as follows. A buffer is connected between the two stages. Such setup is enough to convert out previous circuit to active low pass which has reasonable output voltage. A single stage active low pass would look like the one in the figure.
 
 <br>
-<img src='activelowpass.jpeg' width=450px>
+<img src='assets/activelowpass.jpeg' width=450px>
 <br>
 
 ### Resonance
@@ -45,7 +45,7 @@ Theory is great and all, but how do we actually implement a circuit which does t
 Such circuit offers a fixed resonance. But it's really convenient to change the amount of resonance in the output signal on the fly. It's easy to reduce it. Just reduce the feedback or more precisely, the gain of feedback network by adding a series resistor. It should make it clear that increasing the feedback should increase the resonance. Since no one makes resistors with negative resistance, we need a more mature plan. We use an amplifier to amplify the feedback. Again, there are many ways to design an amplifier with different specs. For out needs, we can simply convert an Opamp to a proper amplifier.
 
 <br>
-<img src='resonancetime.png' width=600px>
+<img src='assets/resonancetime.png' width=600px>
 <br>
 
 Doing that should be pretty intutive. In case of buffer, output was directly connected to the inverting input of the opamp effectively creating a negative feedback loop. Connecting directly implies that the feedback we created here has unity gain, ie. output of the feedback is same as it's input. To Convert the buffer to an amplifier, we decrease the feedback gain, and since it is a negative feedback loop, output of the opamp should increase, thereby acting as an amplifier. With that in mind, to actually reduce the feedback gain, we build something called a voltage divider as shown in figure. It would be helpful to know how two resistors in series can act as a voltage divider. Additionally, we drive the input of feedback network through a potentiometer to change the feedback gain at runtime.
