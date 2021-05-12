@@ -50,7 +50,8 @@ Such circuit offers a fixed resonance. But it's really convenient to change the 
 
 Doing that should be pretty intutive. In case of buffer, output was directly connected to the inverting input of the opamp effectively creating a negative feedback loop. Connecting directly implies that the feedback we created here has unity gain, ie. output of the feedback is same as it's input. To Convert the buffer to an amplifier, we decrease the feedback gain, and since it is a negative feedback loop, output of the opamp should increase, thereby acting as an amplifier. With that in mind, to actually reduce the feedback gain, we build something called a voltage divider as shown in figure. It would be helpful to know how two resistors in series can act as a voltage divider. Additionally, we drive the input of feedback network through a potentiometer to change the feedback gain at runtime.
 ### Additional Stuff
-With the previous circuit, we are almost done. But some additional components should be added to the circuit to make it more reliable. First, we add a voltage divider at the input of the filter to stepdown the input voltage. This is mainly done to prevent distorsion which is caused when opamps run out of their capacity to supply output voltage and settle at highest possible voltage they can give out. Next, we add a simple first order high pass filters at output and input of the entire setup. This is done to properly center the input and output voltage of the filter around zero volts. Finally, since we are building a voltage control filter, we need to control the cutoff frequency of the filter on the fly with some voltage. Cutoff frequency of out filter is determined by the combination of resistor and capacitor values used in out simple low pass filter discussed above. Since there is no obvious way to control the value of capacitor, we vary the value of resistors by replacing ordinary resistors with  voltage controlled resistor. The end circuit would look something like this.
+With the previous circuit, we are almost done. But some additional components should be added to the circuit to make it more reliable. First, we add a voltage divider at the input of the filter to stepdown the input voltage. This is mainly done to prevent distorsion which is caused when opamps run out of their capacity to supply output voltage and settle at highest possible voltage they can give out. Next, we add a simple first order high pass filters at output and input of the entire setup. This is done to properly center the input and output voltage of the filter around zero volts. Finally, since we are building a voltage control filter, we need to control the cutoff frequency of the filter on the fly with some voltage. Cutoff frequency of out filter is determined by the combination of resistor and capacitor values used in out simple low pass filter discussed above. Since there is no obvious way to control the value of capacitor, we vary the value of resistors by replacing ordinary resistors with  voltage controlled resistor. The end circuit would look something like the following.<br>
+It can be observed that the design contains two potentiometers, one of them is used to control the voltage control resistors. These resistors(two of them) determine the cutoff frequency of out filter. The other potentiometer is in the feedback path. This can be used to control the amount of feedback(feedback gain) of the system, which inturn determines the amount of resonance in the output signal.
 
 <br>
 <a href=https://www.multisim.com/content/38KkqZxKF5T4WnXEdLbwdk/vcf/ target="_blank">
@@ -64,7 +65,7 @@ Ok boring stuff aside! lets do something interesting. Since we are designing a a
 ```
 python convert.py <csvFileName>.csv
 ```
-Make sure python is installed in your machine. The above should create a new file named `rec.wav`. Any .wav running software should be able to read it and play the sound by simply double clicking it. Personally, I use the following python script.
+Make sure python is installed in your machine. The above should create a new file named `rec.wav`. Any .wav running software like VLC player should be able to read it and play the sound. Personally, I use the following python script.
 
 ```
 from playsound import playsound
@@ -76,9 +77,10 @@ playsound module can be installed using pip or any other python package manager
 ```pip install playsound```
 
 
-With that my friends, you should be able to enjoy the melodious music created by your filter. Well sort of melodious ;p. Enjoy!!
+With that my friends, you should be able to enjoy some of the most melodious music created by our handmade filter. Well sort of melodious ;p. Enjoy!!
 
 <br>
 
 Have any suggessions, improvements or doubts feel free to reach me out **[@gvictorsd](https://github.com/gvictorsd)**.
 
+<br><br>
